@@ -15,19 +15,17 @@
 class LIS2DH12 {
 public:
 	static void initalize();
-	//1 = rh, 2,=lh, 8=flat
+	//1 = lh, 2 = rh, 8 = flat
 	static Orientation getOrientation() {
 #ifdef MODEL_TS80
-		uint8_t val = (FRToSI2C::I2C_RegisterRead(LIS2DH_I2C_ADDRESS,
-				LIS_INT2_SRC) >> 2);
-		if (val == 8)
-			val = 3;
-		else if (val==1)
-			val=0;
-		else if(val==2)
-			val=1;
+		uint8_t val = (FRToSI2C::I2C_RegisterRead(LIS2DH_I2C_ADDRESS, LIS_INT2_SRC) >> 2);
+
+		if (val == 1)
+			val = 0; // ORIENTATION_LEFT_HAND
+		else if (val == 2)
+			val = 1; // ORIENTATION_RIGHT_HAND
 		else
-			val=3;
+			val = 3; // ORIENTATION_FLAT
 		return static_cast<Orientation>(val);
 #endif
 #ifdef MODEL_TS100
