@@ -332,10 +332,10 @@ static void gui_solderingTempAdjust() {
 			}
 			break;
 		case BUTTON_F_SHORT:
-			systemSettings.SolderingTemp += 10;  // add 10
+			systemSettings.SolderingTemp += 1;  // add 1
 			break;
 		case BUTTON_B_SHORT:
-			systemSettings.SolderingTemp -= 10;  // sub 10
+			systemSettings.SolderingTemp -= 1;  // sub 1
 			break;
 		default:
 			break;
